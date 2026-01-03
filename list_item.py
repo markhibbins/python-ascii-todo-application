@@ -5,7 +5,7 @@ class ListItem:
         pass
 
     def add_child(self, child, position = -1):
-        if(position == -1):
+        if position == -1:
             self.children.append(child)
         else:
             self.children.insert(position, child)
