@@ -15,6 +15,14 @@ class Todo:
             'list': self.todo_service.list,
             'cd': self.todo_service.cd,
         }
+        self.aliases = {
+            'q': 'quit',
+            'a': 'add',
+            'rm': 'remove',
+            'r': 'remove',
+            'ls': 'list',
+            'l': 'list',
+        }
 
     def _quit(self, args=''):
         sys.exit(0)
@@ -29,13 +37,13 @@ class Todo:
                     continue
 
                 parts = line.split(' ', maxsplit=1)
-                command = parts[0]
+                command = self.aliases.get(parts[0], parts[0])
                 args = parts[1] if len(parts) > 1 else ''
 
                 if command in self.commands:
                     self.commands[command](args)
                 else:
-                    print(f"Unknown command: {command}")
+                    print(f"Unknown command: {parts[0]}")
 
             except (KeyboardInterrupt, EOFError):
                 break
