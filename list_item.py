@@ -4,9 +4,8 @@ class ListItem:
     def __init__(self, title):
         self.children = []
         self.title = title
-        pass
 
-    def add_child(self, child, position = -1):
+    def add_child(self, child, position=-1):
         for existing_child in self.children:
             if existing_child.title == child.title:
                 return
@@ -28,6 +27,3 @@ class ListItem:
 
     def remove_child_by_position(self, position):
         self.children.remove(position)
-
-
-
