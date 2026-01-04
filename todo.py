@@ -10,6 +10,8 @@ class Todo:
         self.todo_service = TodoService()
         self.commands = {
             'quit': self._quit,
+            'add': self.todo_service.add,
+            'remove': self.todo_service.remove,
             'list': self.todo_service.list,
             'cd': self.todo_service.cd,
         }

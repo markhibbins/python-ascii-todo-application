@@ -1,4 +1,6 @@
 class ListItem:
+    title = ''
+
     def __init__(self, title):
         self.children = []
         self.title = title
@@ -8,12 +10,21 @@ class ListItem:
         if position == -1:
             self.children.append(child)
         else:
-            self.children.insert(position, child)
+            self.children.insert(position - 1, child)
 
     def get_title(self):
         return self.title
 
     def get_children(self):
         return self.children
+
+    def remove_child_by_title(self, title):
+        for child in self.children:
+            if child.title == title:
+                self.children.remove(child)
+
+    def remove_child_by_position(self, position):
+        self.children.remove(position)
+
 
 
