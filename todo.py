@@ -3,7 +3,6 @@ import sys
 
 from todo_service import TodoService
 
-
 class Todo:
 
     def __init__(self):
@@ -22,7 +21,7 @@ class Todo:
     def run_command_parser(self):
         while True:
             try:
-                print('> ', end='', flush=True)
+                print(f'{self.todo_service.get_path()}> ', end='', flush=True)
                 line = input().strip()
 
                 if not line:
