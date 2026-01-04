@@ -7,6 +7,9 @@ class ListItem:
         pass
 
     def add_child(self, child, position = -1):
+        for existing_child in self.children:
+            if existing_child.title == child.title:
+                return
         if position == -1:
             self.children.append(child)
         else:
