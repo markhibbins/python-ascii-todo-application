@@ -8,24 +8,24 @@ class TodoService:
         self.nav_item = self.item_root
 
     def cd(self, args=''):
-        if args == '..' and self.nav_item != self.item_root:
-            self.nav_item = self.nav_item.parent
-        elif args == '/' and self.nav_item != self.item_root:
+        if args == '..':
+            if self.nav_item.parent:
+                self.nav_item = self.nav_item.parent
+        elif args == '/':
             self.nav_item = self.item_root
         else:
-            for child in self.nav_item.children:
-                if child.title == args:
-                    self.nav_item = child
+            child = next((c for c in self.nav_item.children if c.title == args), None)
+            if child:
+                self.nav_item = child
 
     def get_path(self):
-        path=[]
+        path = []
         path_item = self.nav_item
         while path_item.title:
             path.append(path_item.title)
-            path_item = path_item.get_parent()
+            path_item = path_item.parent
         path_string = '/'.join(reversed(path))
-        if path_string: path_string = path_string + ' '
-        return path_string
+        return f'{path_string} ' if path_string else ''
 
     def add(self, args=''):
         try:
@@ -44,5 +44,5 @@ class TodoService:
             self.nav_item.remove_child_by_title(args)
 
     def list(self, args=''):
-        for index, child in enumerate(self.nav_item.get_children()):
-            print(f'{index + 1}. {child.title}')
+        for index, child in enumerate(self.nav_item.children, 1):
+            print(f'{index}. {child.title}')

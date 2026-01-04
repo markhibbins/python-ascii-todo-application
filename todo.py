@@ -3,6 +3,7 @@ import sys
 
 from todo_service import TodoService
 
+
 class Todo:
 
     def __init__(self):
